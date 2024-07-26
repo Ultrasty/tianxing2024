@@ -3,6 +3,8 @@ import ApplyView from '@/views/apply/ApplyView.vue'
 import ContactView from '@/views/contact/ContactView.vue'
 import DonationView from '@/views/donation/DonationView.vue'
 import LoginView from '@/views/login/LoginView.vue'
+import nao from '@/views/NAO/nao.vue'
+
 import NewsDetailView from '@/views/news/NewsDetailView.vue'
 import NewsView from '@/views/news/NewsView.vue'
 import UserView from '@/views/user/UserView.vue'
@@ -64,6 +66,14 @@ const router = createRouter({
                     },
                     path: 'donation',
                     component: DonationView,
+                },
+                {
+                    name: 'nao',
+                    meta: {
+                        title: 'NAO',
+                    },
+                    path: 'nao',
+                    component:nao,
                 },
             ],
         },

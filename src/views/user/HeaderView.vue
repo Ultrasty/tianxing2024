@@ -35,6 +35,7 @@ const menus = [
     { title: 'News & Insights', name: 'news' },
     { title: 'Contact Us', name: 'contact' },
     { title: 'Donation', name: 'donation' },
+    { title: 'NAO', name: 'nao' }, 
 ]
 const handleAvatarClick = () => {
     if (!user.loggedIn) {

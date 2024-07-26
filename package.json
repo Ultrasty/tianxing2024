@@ -11,9 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.7.2",
+    "echarts": "^5.5.1",
     "element-plus": "^2.7.1",
+    "sass": "^1.77.8",
     "umi-request": "^1.4.0",
     "vue": "^3.4.21",
+    "vue-echarts": "7.0.0-beta.0",
     "vue-router": "^4.3.2",
     "vue-types": "^5.1.1",
     "vue3-google-login": "^2.0.26"
@@ -21,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/runtime-core": "^3.4.34",
     "autoprefixer": "^10.4.19",
     "compressing": "^1.10.0",
     "less": "^4.2.0",
