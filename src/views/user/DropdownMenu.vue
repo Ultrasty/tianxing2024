@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, PropType } from 'vue';
 
 interface SubMenu {
     title: string;

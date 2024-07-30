@@ -411,6 +411,20 @@ import {ArrowLeft,
       </ul>
     </div>
 
+    <div><p></p></div>
+    <div class="text-container" v-if="chartSelected === 0">
+      <p class="text_of_graph">{{ text_of_temperature }}</p>
+      </div>
+    <div class="text-container" v-if="chartSelected === 1">
+      <p class="text_of_graph">{{ text_of_rain }}</p>
+    </div>
+    <div class="text-container" v-if="chartSelected === 2">
+      <div>
+      <p class="text_of_graph">{{ text_of_wind }}</p>
+      <p class="text_of_graph">{{ text_of_wind2 }}</p>
+      </div>
+    </div>
+
     <div class="datePickerContainer">
       <!-- 已控制时间选择范围 -->
       <div class="datetime-picker">
@@ -437,9 +451,6 @@ import {ArrowLeft,
             <div class="pic_container">
               <img class="picture" :src="imgSrc_of_temperature" alt="">
             </div>
-            <p class="picture_text">
-              {{ text_of_temperature }}
-            </p>
             <el-button ref="buttonLeftTemp" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_tempe('left')"></el-button>
             <el-button ref="buttonRightTemp" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_tempe('right')"></el-button>
           </div>
@@ -453,9 +464,6 @@ import {ArrowLeft,
             <div class="pic_container">
               <img class="picture" :src="imgSrc_of_rain" alt="">
             </div>
-            <p class="picture_text">
-              {{ text_of_rain }}
-            </p>
             <el-button ref="buttonLeftRain" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_rain('left')"></el-button>
             <el-button ref="buttonRightRain" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_rain('right')"></el-button>
           </div>
@@ -469,9 +477,6 @@ import {ArrowLeft,
             <div class="pic_container">
               <img class="picture" :src="imgSrc_of_wind" alt="">
             </div>
-            <p class="picture_text">
-              {{ text_of_wind }}
-            </p>
             <el-button ref="buttonLeftWind" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_wind('left')"></el-button>
             <el-button ref="buttonRightWind" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_wind('right')"></el-button>
            </div>                
@@ -482,77 +487,10 @@ import {ArrowLeft,
             <div class="pic_container">
               <img class="picture" :src="imgSrc_of_wind2" alt="">
             </div>
-            <p class="picture_text">
-              {{ text_of_wind2 }}
-            </p>
             <el-button ref="buttonLeftWind2" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_wind2('left')"></el-button>
             <el-button ref="buttonRightWind2" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_wind2('right')"></el-button>
           </div>
-    </div>  
-    <!-- 以下是旧版框图 -->
-    <!-- <div class="tabs-container">
-      <el-tabs type="border-card">
-        <el-tab-pane label="气温预测">
-          <div class="whole_container">
-            <p class="picture_title">
-              {{ title_of_temperature }}
-            </p>
-            <div class="pic_container">
-              <img class="picture" :src="imgSrc_of_temperature" alt="">
-            </div>
-            <p class="picture_text">
-              {{ text_of_temperature }}
-            </p>
-            <el-button ref="buttonLeftTemp" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_tempe('left')"></el-button>
-            <el-button ref="buttonRightTemp" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_tempe('right')"></el-button>
-          </div>
-
-        </el-tab-pane>
-        <el-tab-pane label="降水预测">
-          <div class="whole_container">
-            <p class="picture_title">
-              {{ title_of_rain }}
-            </p>
-            <div class="pic_container">
-              <img class="picture" :src="imgSrc_of_rain" alt="">
-            </div>
-            <p class="picture_text">
-              {{ text_of_rain }}
-            </p>
-            <el-button ref="buttonLeftRain" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_rain('left')"></el-button>
-            <el-button ref="buttonRightRain" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_rain('right')"></el-button>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="风场预测">
-           <div class="whole_container">
-            <p class="picture_title">
-              {{ title_of_wind }}
-            </p>
-            <div class="pic_container">
-              <img class="picture" :src="imgSrc_of_wind" alt="">
-            </div>
-            <p class="picture_text">
-              {{ text_of_wind }}
-            </p>
-            <el-button ref="buttonLeftWind" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_wind('left')"></el-button>
-            <el-button ref="buttonRightWind" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_wind('right')"></el-button>
-           </div>                
-          <div class="whole_container">
-            <p class="picture_title">
-              {{ title_of_wind2 }}
-            </p>
-            <div class="pic_container">
-              <img class="picture" :src="imgSrc_of_wind2" alt="">
-            </div>
-            <p class="picture_text">
-              {{ text_of_wind2 }}
-            </p>
-            <el-button ref="buttonLeftWind2" type="primary" class="arrow-left" :icon="ArrowLeft" @click="change_time_wind2('left')"></el-button>
-            <el-button ref="buttonRightWind2" type="primary" class="arrow-right" :icon="ArrowRight" @click="change_time_wind2('right')"></el-button>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -618,18 +556,19 @@ import {ArrowLeft,
    text-align: center;
    font-size: 22px;
 }
-.picture_text {
-  text-align: center;
-  font-size: 22px;
-}
 .picture {
-  max-width: 80%;
+  width: 100vh;
   display: bloc; /* 将元素设置为块级元素 */
-  margin-left: 100px;
-  margin-top: -175px;
-  margin-bottom: -160px;
+  margin-top: -15%;
+  margin-bottom: -15%;
+  max-width: 100%; /* 确保图片不会超出父容器 */
+  height: auto; /* 保持图片比例 */
+  display: inline-block; /* 使图片可以与 text-align 一起使用 */
+
 }
 .pic_container{
+  text-align: center; /* 使图片在容器内居中 */
+  max-width: 100%;
   overflow: hidden;
 }
 
@@ -759,5 +698,18 @@ ul.menu li:not(:last-child)::after {
 
 .text4 {
   text-align: center;
+}
+.text-container {
+  width: 80%;
+  max-width: 800px; /* 最大宽度 */
+  margin: 0 auto;
+  display: block; 
+  text-align: left;
+  background-color: #e6e6fa; /* 淡紫色 */
+  display: flex;
+  padding: 15px;
+  border: 2px solid #aca0a0; 
+  border-radius: 8px; /* 可选的圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 可选的阴影 */
 }
 </style>

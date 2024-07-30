@@ -198,6 +198,16 @@ import {
       </ul>
     </div>
 
+
+    <div><p></p></div>
+    <div class="text-container" v-if="chartSelected === 0">
+      <p class="text_of_graph">{{ Chart1_Description.text }}</p>
+      </div>
+    <!-- <div class="text-container" v-if="chartSelected === 1">
+      <p class="text_of_graph">{{ Chart2_Description.text }}</p>
+    </div> -->
+
+
     <div class="datePickerContainer">
       <el-date-picker @change="update_charts()" v-model="start_year" type="year" format="YYYY" value-format="YYYY"
         :clearable="false" :disabledDate="limitedDateRange" style="width: 80px; height: 25px" />
@@ -209,8 +219,6 @@ import {
 
     <div class="chart-selector" v-if="chartSelected === 0">
         <v-chart class="chart_1" :option="chart1" autoresize> </v-chart>
-        <p class="text_of_graph">{{ Chart1_Description.text }}
-        </p>
     </div>
 
     <div class="chart-selector" v-else-if="chartSelected === 1">
@@ -377,14 +385,32 @@ ul.menu li:not(:last-child)::after {
   width: 700px;
   display: block;
   /* 将元素设置为块级元素 */
-  margin: auto;
+  max-width: 100%; /* 确保图片不会超出父容器 */
+  height: auto; /* 保持图片比例 */
+  display: inline-block; /* 使图片可以与 text-align 一起使用 */
 }
 .pic_container {
+  text-align: center; /* 使图片在容器内居中 */
+  max-width: 100%;
   overflow: hidden;
 }
 
 .picture_title {
   text-align: center;
   font-size: 18px;
+}
+
+.text-container {
+  width: 80%;
+  max-width: 800px; /* 最大宽度 */
+  margin: 0 auto;
+  display: block; 
+  text-align: left;
+  background-color: #e6e6fa; /* 淡紫色 */
+  display: flex;
+  padding: 15px;
+  border: 2px solid #aca0a0; 
+  border-radius: 8px; /* 可选的圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 可选的阴影 */
 }
 </style>

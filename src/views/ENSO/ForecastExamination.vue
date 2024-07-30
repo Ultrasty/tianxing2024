@@ -229,6 +229,19 @@ import {
         </li>
       </ul>
     </div>
+    <div><p></p></div>
+    <div class="text-container" v-if="chartSelected === 0">
+      <p class="text_of_graph">{{ Chart1_Description.text }}</p>
+    </div>
+    <div class="text-container" v-if="chartSelected === 1">
+      <p class="text_of_graph">{{ Chart2_Description.text }}</p>
+    </div>
+    <div class="text-container" v-if="chartSelected === 2">
+      <p class="text_of_graph">{{ Chart3_Description.text }}</p>
+    </div>
+    <div class="text-container" v-if="chartSelected === 3">
+      <p class="text_of_graph">{{ Chart4_Description.text }}</p>
+    </div>
 
     <div class="datePickerContainer">
       <el-date-picker @change="update_charts()" v-model="start_year" type="year" format="YYYY" value-format="YYYY"
@@ -241,7 +254,6 @@ import {
 
     <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="chart" :option="chart1" autoresize></v-chart>
-      <p class="text_of_graph">{{ Chart1_Description.text }}</p>
     </div>
 
     <div class="chart-selector" v-else-if="chartSelected === 1">
@@ -250,18 +262,15 @@ import {
         @click="change_Month('left')"></el-button>
       <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
         @click="change_Month('right')"></el-button>
-      <p class="text_of_graph">{{ Chart2_Description.text }}</p>
     </div>
 
     <div class="chart-selector" v-else-if="chartSelected === 2">
-      <v-chart class="chart_3" :option="chart3" autoresize></v-chart>
-      <p class="text3">{{ Chart3_Description.text }}</p>
+      <v-chart class="chart" :option="chart3" autoresize></v-chart>
     </div>
 
 
     <div class="chart-selector" v-else-if="chartSelected === 3">
-      <v-chart class="chart_4" :option="chart4" autoresize></v-chart>
-      <p class="text4">{{ Chart4_Description.text }}</p>
+      <v-chart class="chart" :option="chart4" autoresize></v-chart>
     </div>
   </div>
 </template>
@@ -290,29 +299,14 @@ import {
 
 /*chart1、2 的表和文字*/
 .chart {
-  height: 400px;
+  height: 50vh;
+  min-height: 400px;
 }
 
 .text_of_graph {
-  text-align: center;
+  text-align: left;
 }
 
-/*chart3、4 的表和文字*/
-.chart_3 {
-  height: 400px;
-}
-
-.chart_4 {
-  height: 400px;
-}
-
-.text3 {
-  text-align: center;
-}
-
-.text4 {
-  text-align: center;
-}
 
 /* 预报误差页面的容器 没用了*/
 // .chart-container {
@@ -423,5 +417,19 @@ ul.menu li:not(:last-child)::after {
 
 .chart-name-selected {
   color: blue;
+}
+
+.text-container {
+  width: 80%;
+  max-width: 800px; /* 最大宽度 */
+  margin: 0 auto;
+  display: block; 
+  text-align: left;
+  background-color: #e6e6fa; /* 淡紫色 */
+  display: flex;
+  padding: 15px;
+  border: 2px solid #aca0a0; 
+  border-radius: 8px; /* 可选的圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 可选的阴影 */
 }
 </style>
