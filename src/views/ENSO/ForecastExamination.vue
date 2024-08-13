@@ -251,11 +251,11 @@ import {
           :disabledDate="limitedDateRange" />
       </div>
     </div>
-    <div class="chart-selector1" v-if="chartSelected === 0">
+    <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="chart1" :option="chart1" autoresize></v-chart>
     </div>
 
-    <div class="chart-selector" v-else-if="chartSelected === 1">
+    <div class="chart-selector-with-button" v-else-if="chartSelected === 1">
       <v-chart class="chart" :option="chart2" autoresize></v-chart>
       <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
         @click="change_Month('left')"></el-button>
@@ -417,16 +417,6 @@ ul.menu li:hover p {
   position: absolute;
   z-index: 3;
   /* 确保滑动条在覆盖层之上 */
-}
-
-.chart-selector1 {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 0%;
-  margin: 0px 6.6%;
 }
 
 .chart-name-selected {

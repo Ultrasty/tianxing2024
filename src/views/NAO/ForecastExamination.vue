@@ -169,23 +169,23 @@ const movBoxStyle = computed(() => ({
     </div>
 
     <div style="margin: 0px 10%;">
-    <div class="text-container" v-if="chartSelected === 0">
-      <div class="description">
-        {{ text_of_option1 }}
+      <div class="text-container" v-if="chartSelected === 0">
+        <div class="description">
+          {{ text_of_option1 }}
+        </div>
+      </div>
+
+      <div class="text-container" v-if="chartSelected === 1">
+        <div class="description1">
+          {{ text_of_option7 }}
+        </div>
+      </div>
+
+      <div class="datePickerContainer">
+        <el-date-picker @change="updateChartTitle()" v-model="selectedDateTime" type="month" :clearable="false"
+          :disabledDate="limitedDateRange" />
       </div>
     </div>
-
-    <div class="text-container" v-if="chartSelected === 1">
-      <div class="description1">
-        {{ text_of_option7 }}
-      </div>
-    </div>
-
-    <div class="datePickerContainer">
-      <el-date-picker @change="updateChartTitle()" v-model="selectedDateTime" type="month" :clearable="false"
-        :disabledDate="limitedDateRange" />
-    </div>
-  </div>
     <div class="chart-selector" v-if="chartSelected === 1">
       <h2 class="chart-title">
         NAOI指数预测的相关系数
@@ -201,10 +201,10 @@ const movBoxStyle = computed(() => ({
       </h2>
       <div class="whole_container">
         <div style="margin: 0 10%;">
-        <div class="pic_container">
-          <immersive-picture :src="imgSrc_of_nao" />
+          <div class="pic_container">
+            <immersive-picture :src="imgSrc_of_nao" />
+          </div>
         </div>
-      </div>
         <!-- <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft"
             @click=" change_time_nao('left')"></el-button>
           <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
@@ -267,7 +267,7 @@ const movBoxStyle = computed(() => ({
 }
 
 .chart {
-  height: 500px;
+  width: 100%;
 }
 
 .description {
@@ -285,8 +285,8 @@ const movBoxStyle = computed(() => ({
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  position:relative;
-  padding:50px 0 30px;
+  position: relative;
+  padding: 50px 0 30px;
 }
 
 .text {
@@ -418,17 +418,6 @@ ul.menu li:hover p {
   position: absolute;
   z-index: 3;
   /* 确保滑动条在覆盖层之上 */
-}
-
-.chart-selector {
-  position: relative;
-  //修改为块级
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 0%;
-  margin: 0px 0%;
 }
 
 .chart-name-selected {

@@ -693,10 +693,6 @@ ul.menu li:hover p {
   /* 确保滑动条在覆盖层之上 */
 }
 
-.chart-selector {
-  padding: 0;
-}
-
 .chart-name-selected {
   color: blue;
 }

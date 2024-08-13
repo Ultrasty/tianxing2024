@@ -5,8 +5,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0px 12%;
-  padding: 0px 5%;
+  margin: 0px 10%;
+  padding: 0px 0%;
+}
+//有且仅有enso预测检验的第二栏用的是这个
+.chart-selector-with-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 10%;
+  padding: 0 5%;
 }
 
 /** 个别图表左右附着的切换按钮

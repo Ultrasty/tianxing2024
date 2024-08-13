@@ -303,20 +303,20 @@ onMounted(
       <p></p>
     </div>
     <div style="margin: 0px 10%;">
-    <div class="text-container" v-if="chartSelected === 0">
-      <div class="description">
-        {{ NAOIDescription }}
+      <div class="text-container" v-if="chartSelected === 0">
+        <div class="description">
+          {{ NAOIDescription }}
+        </div>
+      </div>
+
+
+      <div class="datePickerContainer">
+        <el-date-picker @change="updateNAOIChart" v-if="selectedNAOI" type="month" v-model="selectedDate"
+          :clearable="false" :disabled-date="NAOIDisabledYear" />
+        <el-date-picker @change="updateSLPChart" v-if="selectedSLP" type="month" v-model="selectedDate"
+          :clearable="false" :disabled-date="SLPDisabledYear" />
       </div>
     </div>
-
-
-    <div class="datePickerContainer">
-      <el-date-picker @change="updateNAOIChart" v-if="selectedNAOI" type="month" v-model="selectedDate"
-        :clearable="false" :disabled-date="NAOIDisabledYear" />
-      <el-date-picker @change="updateSLPChart" v-if="selectedSLP" type="month" v-model="selectedDate" :clearable="false"
-        :disabled-date="SLPDisabledYear" />
-    </div>
-  </div>
 
     <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="NAOIChart" :option="NAOIOption" autoresize />
@@ -363,8 +363,8 @@ onMounted(
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  position:relative;
-  padding:50px 0 30px;
+  position: relative;
+  padding: 50px 0 30px;
 }
 
 .text {
@@ -478,16 +478,6 @@ ul.menu li:hover p {
   position: absolute;
   z-index: 3;
   /* 确保滑动条在覆盖层之上 */
-}
-
-.chart-selector {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 0%;
-  margin: 0px 0%;
 }
 
 .chart-name-selected {

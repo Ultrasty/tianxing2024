@@ -211,39 +211,39 @@ import {
     </div>
     <div style="margin: 0px 10%;">
 
-    <div class="text-container" v-if="chartSelected === 0">
-      <p class="text_of_graph">{{ Chart1_Description.text }}</p>
-    </div>
-    <!-- <div class="text-container" v-if="chartSelected === 1">
+      <div class="text-container" v-if="chartSelected === 0">
+        <p class="text_of_graph">{{ Chart1_Description.text }}</p>
+      </div>
+      <!-- <div class="text-container" v-if="chartSelected === 1">
       <p class="text_of_graph">{{ Chart2_Description.text }}</p>
     </div> -->
 
 
-    <div class="datePickerContainer">
-      <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
-        :disabledDate="limitedDateRange" />
-    </div>
+      <div class="datePickerContainer">
+        <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
+          :disabledDate="limitedDateRange" />
+      </div>
 
     </div>
-    
+
     <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="chart_1" :option="chart1" autoresize> </v-chart>
     </div>
 
 
     <div class="chart-selector" v-else-if="chartSelected === 1">
-    <div style="margin: 0px 10%;">
-      <p class="picture_title">
-        {{ title_of_heat }}
-      </p>
-      <div class="pic_container">
-        <immersive-picture :src="imgSrc_of_heat" />
+      <div style="margin: 0px 10%;">
+        <p class="picture_title">
+          {{ title_of_heat }}
+        </p>
+        <div class="pic_container">
+          <immersive-picture :src="imgSrc_of_heat" />
+        </div>
+        <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
+          @click="change_time_heat('left')"></el-button>
+        <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
+          @click="change_time_heat('right')"></el-button>
       </div>
-      <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
-        @click="change_time_heat('left')"></el-button>
-      <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
-        @click="change_time_heat('right')"></el-button>
-    </div>
     </div>
   </div>
 </template>
@@ -267,8 +267,8 @@ import {
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  position:relative;
-  padding:50px 0 30px;
+  position: relative;
+  padding: 50px 0 30px;
 }
 
 .text {
@@ -388,16 +388,6 @@ ul.menu li:hover p {
   position: absolute;
   z-index: 3;
   /* 确保滑动条在覆盖层之上 */
-}
-
-.chart-selector {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 0%;
-  margin: 0px 0%;
 }
 
 .chart-name-selected {
