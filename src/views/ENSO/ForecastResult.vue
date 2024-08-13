@@ -157,7 +157,7 @@ defineExpose({
 
 /* 新版添加的代码========================================================== */
 import bannerImg from '@/assets/header.jpg';
-
+import ImmersivePicture from "../user/ImmersivePicture.vue";
 
 const chartSelected = ref(0);
 
@@ -231,12 +231,12 @@ import {
         {{ title_of_heat }}
       </p>
       <div class="pic_container">
-        <img class="picture" :src="imgSrc_of_heat" alt="">
-        <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
-          @click="change_time_heat('left')"></el-button>
-        <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
-          @click="change_time_heat('right')"></el-button>
+        <immersive-picture :src="imgSrc_of_heat" />
       </div>
+      <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
+        @click="change_time_heat('left')"></el-button>
+      <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
+        @click="change_time_heat('right')"></el-button>
     </div>
   </div>
 </template>
@@ -248,10 +248,12 @@ import {
   text-align: center;
   font-size: 55px;
   margin-left: 20%;
-  letter-spacing: 1px; /* 字符间距 */
- 
-  z-index: 1; /* 确保图片在文字下方 */
-  color:#ffffff;
+  letter-spacing: 1px;
+  /* 字符间距 */
+
+  z-index: 1;
+  /* 确保图片在文字下方 */
+  color: #ffffff;
 
 }
 
@@ -325,7 +327,7 @@ ul.menu {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-  
+
 }
 
 ul.menu li {
@@ -336,8 +338,10 @@ ul.menu li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* 更改鼠标形状为手形 */
-  overflow: hidden; /* 确保伪元素的边界与 li 元素一致 */
+  cursor: pointer;
+  /* 更改鼠标形状为手形 */
+  overflow: hidden;
+  /* 确保伪元素的边界与 li 元素一致 */
 }
 
 ul.menu li:not(:last-child)::after {
@@ -358,20 +362,27 @@ ul.menu li:hover::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(240, 240, 240, 0.8); /* 浅灰色 */
-  border-radius: 10px; /* 确保形状与选项卡一致 */
-  pointer-events: none; /* 确保伪元素不影响鼠标事件 */
-  z-index: 1; /* 确保覆盖层在文字和内容下方 */
+  background-color: rgba(240, 240, 240, 0.8);
+  /* 浅灰色 */
+  border-radius: 10px;
+  /* 确保形状与选项卡一致 */
+  pointer-events: none;
+  /* 确保伪元素不影响鼠标事件 */
+  z-index: 1;
+  /* 确保覆盖层在文字和内容下方 */
 }
 
 ul.menu li:hover p {
   color: rgb(255, 89, 0);
-  z-index: 2; /* 确保文字在覆盖层之上 */
+  z-index: 2;
+  /* 确保文字在覆盖层之上 */
 }
+
 .mov-box {
   position: absolute;
-  z-index: 3; /* 确保滑动条在覆盖层之上 */
-} 
+  z-index: 3;
+  /* 确保滑动条在覆盖层之上 */
+}
 
 .chart-selector {
   position: relative;
@@ -421,13 +432,15 @@ ul.menu li:hover p {
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
-  background-color:rgba(239, 242, 252, 0.801);; 
+  background-color: rgba(239, 242, 252, 0.801);
+  ;
   /* 淡紫色 */
   display: flex;
   padding: 20px;
   border-radius: 8px;
   /* 可选的圆角 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893); /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  /* 阴影 */
   font-family: 'STKaiti';
   // font-size: 18px;
 }

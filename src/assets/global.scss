@@ -1,14 +1,30 @@
+//一般来说这是el-chart和el-button的直接父元素
+.chart-selector {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 12%;
+  padding: 0px 5%;
+}
+
+/** 个别图表左右附着的切换按钮
+* 这些按钮的位置取决于它们的直接父元素，务必为它们的父元素设置position属性！
+* 它们会分属左右两边，紧贴边界，充满高度
+*/
 .el-button{
   position: absolute;
-  top: 50%;
-  width: 50px;
-  height: 100px;
-  transform: translateY(-50%);
+  top: 0;
+  width: 7%;
+  height: 100%;
 
   font-size: 50px;
   border: none;
   overflow: hidden;
   border-radius: 0;
+  color: rgba(128, 128, 128, 0.4);
+  background: transparent;
 
   &:before{
     content: '';
@@ -20,44 +36,47 @@
   }
 
   &:hover {
-    background-color: white;
     color: white;
+    background: transparent;
     border-radius: 0;
   }
 
-  &,&:active{
-    color: gray;
-    background-color: white;
-  }
-
   &.arrow-left,&.arrowLeft{
-    left:10%;
+    left: 0;
+    &:active {
+      transform: perspective(600px) rotateY(15deg) scale(0.95);
+    }
     &:hover:before{
       left:0;
     }
-    &:before,&:active:before{
+    &:before{
       left: -100%;
-      background: linear-gradient(to left, white, rgb(83, 128, 196));
+      background: linear-gradient(to left, transparent, rgba(0, 64, 192, 0.3));
       transition: left 0.3s ease;
     }
   }
 
   &.arrow-right,&.arrowRight{
-    right:10%;
+    right:0;
+    &:active {
+      transform: perspective(600px) rotateY(-15deg) scale(0.95);
+    }
     &:hover:before{
       right:0;
     }
-    &:before,&:active:before{
+    &:before{
       right: -100%;
-      background: linear-gradient(to right, white, rgb(83, 128, 196));
+      background: linear-gradient(to right, transparent, rgba(0, 64, 192, 0.3));
       transition: right 0.3s ease;
     }
   }
 }
 
+// 日期选择器
 .datePickerContainer .el-input__wrapper {
   position: relative;
   border: none;
+  background: transparent;
   border-bottom: 2px solid rgb(173, 216, 230);
   border-radius: 0;
   box-shadow: none;
@@ -65,6 +84,7 @@
 
   .el-input__inner{
     font-size: 14px;
+    height: 100%;
     margin-left: 0;
     transition: all 0.3s ease;
   }

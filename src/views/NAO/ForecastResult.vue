@@ -8,6 +8,7 @@ import { configProviderContextKey } from "element-plus";
 
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue';
 import bannerImg from '@/assets/header.jpg';//首页图
+import ImmersivePicture from "../user/ImmersivePicture.vue";
 
 const selectedNAOI = ref(true)
 const selectedSLP = ref(false)
@@ -324,46 +325,13 @@ onMounted(
       <h4 v-show="!SLPLoading" style="text-align: center; margin-top: 0px; margin-bottom: 15px; font-size: 16px">({{
         imgIndex + 1 }}/{{ imgSrc.length }})</h4>
       <div class="imgContainer">
-        <img v-if="imgSrc.length" :src="'http://tianxing.tongji.edu.cn' + imgSrc[imgIndex]" class="image" alt="" />
+        <immersive-picture v-if="imgSrc.length" :src="'http://tianxing.tongji.edu.cn' + imgSrc[imgIndex]" />
       </div>
       <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft"
         @click="changeIndex('left')"></el-button>
       <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
         @click="changeIndex('right')"></el-button>
-
     </div>
-
-    <!-- <el-tabs type="border-card" @tab-click="selectChart" :stretch="true">
-      <el-tab-pane label="指数预测" v-loading="NAOILoading && selectedNAOI">
-        <v-chart class="NAOIChart" :option="NAOIOption" autoresize />
-        <div class="description">
-          {{ NAOIDescription }}
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="模态预测" v-loading="SLPLoading && selectedSLP" style="min-height: 350px">
-        <h3 v-show="!SLPLoading" style="text-align: center; margin-top: 0px; margin-bottom: 15px">{{ SLPChartTitle }}</h3>
-        <h4 v-show="!SLPLoading" style="text-align: center; margin-top: 0px; margin-bottom: 15px; font-size: 16px">({{ imgIndex + 1 }}/{{ imgSrc.length }})</h4>
-        <el-row v-show="!SLPLoading">
-          <el-col :span="2">
-            <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft" @click="changeIndex('left')" />
-          </el-col>
-          <el-col :span="20">
-
-            <div class="imgContainer">
-              <img v-if="imgSrc.length" :src="'http://tianxing.tongji.edu.cn' + imgSrc[imgIndex]" class="image" alt="" />
-            </div>
-          </el-col>
-
-          <el-col :span="2">
-            <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight" @click="changeIndex('right')" />
-          </el-col>
-        </el-row> -->
-    <!-- <div class="description">
-          {{ SLPDescription }}
-        </div> -->
-    <!-- 接口未提供描述 -->
-    <!-- </el-tab-pane>
-    </el-tabs> -->
   </div>
 </template>
 
@@ -374,9 +342,11 @@ onMounted(
   text-align: center;
   font-size: 55px;
   margin-left: 20%;
-  letter-spacing: 1px; /* 字符间距 */
-  z-index: 1; /* 确保图片在文字下方 */
-  color:#ffffff;
+  letter-spacing: 1px;
+  /* 字符间距 */
+  z-index: 1;
+  /* 确保图片在文字下方 */
+  color: #ffffff;
 }
 
 .NAOIChart {
@@ -461,8 +431,10 @@ ul.menu li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* 更改鼠标形状为手形 */
-  overflow: hidden; /* 确保伪元素的边界与 li 元素一致 */
+  cursor: pointer;
+  /* 更改鼠标形状为手形 */
+  overflow: hidden;
+  /* 确保伪元素的边界与 li 元素一致 */
 }
 
 ul.menu li:not(:last-child)::after {
@@ -475,6 +447,7 @@ ul.menu li:not(:last-child)::after {
   background-color: #00000020;
   transform: translateY(-50%);
 }
+
 ul.menu li:hover::before {
   content: "";
   position: absolute;
@@ -482,20 +455,28 @@ ul.menu li:hover::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(240, 240, 240, 0.8); /* 浅灰色 */
-  border-radius: 10px; /* 确保形状与选项卡一致 */
-  pointer-events: none; /* 确保伪元素不影响鼠标事件 */
-  z-index: 1; /* 确保覆盖层在文字和内容下方 */
+  background-color: rgba(240, 240, 240, 0.8);
+  /* 浅灰色 */
+  border-radius: 10px;
+  /* 确保形状与选项卡一致 */
+  pointer-events: none;
+  /* 确保伪元素不影响鼠标事件 */
+  z-index: 1;
+  /* 确保覆盖层在文字和内容下方 */
 }
 
 ul.menu li:hover p {
   color: rgb(255, 89, 0);
-  z-index: 2; /* 确保文字在覆盖层之上 */
+  z-index: 2;
+  /* 确保文字在覆盖层之上 */
 }
+
 .mov-box {
   position: absolute;
-  z-index: 3; /* 确保滑动条在覆盖层之上 */
+  z-index: 3;
+  /* 确保滑动条在覆盖层之上 */
 }
+
 .chart-selector {
   position: relative;
   //修改为块级
@@ -515,13 +496,15 @@ ul.menu li:hover p {
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
-  background-color:rgba(239, 242, 252, 0.801);; 
+  background-color: rgba(239, 242, 252, 0.801);
+  ;
   /* 淡紫色 */
   display: flex;
   padding: 20px;
   border-radius: 8px;
   /* 可选的圆角 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893); /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  /* 阴影 */
   font-family: 'STKaiti';
   // font-size: 18px;
 }
