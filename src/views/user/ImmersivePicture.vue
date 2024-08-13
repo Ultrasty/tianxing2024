@@ -21,7 +21,6 @@ let newPattern = null;
 let fadeProgress = 0;
 
 const loadImage = (src) => {
-	console.log("loading");
 	const img = new Image();
 	img.crossOrigin = 'anonymous';
 
