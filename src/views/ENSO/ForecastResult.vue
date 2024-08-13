@@ -209,6 +209,8 @@ import {
     <div>
       <p></p>
     </div>
+    <div style="margin: 0px 10%;">
+
     <div class="text-container" v-if="chartSelected === 0">
       <p class="text_of_graph">{{ Chart1_Description.text }}</p>
     </div>
@@ -222,11 +224,15 @@ import {
         :disabledDate="limitedDateRange" />
     </div>
 
+    </div>
+    
     <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="chart_1" :option="chart1" autoresize> </v-chart>
     </div>
 
+
     <div class="chart-selector" v-else-if="chartSelected === 1">
+    <div style="margin: 0px 10%;">
       <p class="picture_title">
         {{ title_of_heat }}
       </p>
@@ -237,6 +243,7 @@ import {
         @click="change_time_heat('left')"></el-button>
       <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
         @click="change_time_heat('right')"></el-button>
+    </div>
     </div>
   </div>
 </template>
@@ -260,9 +267,8 @@ import {
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  padding-right: 15%;
-  padding-top: 50px;
-  margin-bottom: 20px;
+  position:relative;
+  padding:50px 0 30px;
 }
 
 .text {
@@ -390,7 +396,8 @@ ul.menu li:hover p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 15%;
+  padding: 0px 0%;
+  margin: 0px 0%;
 }
 
 .chart-name-selected {
@@ -404,7 +411,7 @@ ul.menu li:hover p {
 }
 
 .picture {
-  width: 700px;
+  width: 100%;
   display: block;
   /* 将元素设置为块级元素 */
   max-width: 100%;
@@ -419,6 +426,7 @@ ul.menu li:hover p {
   text-align: center;
   /* 使图片在容器内居中 */
   max-width: 100%;
+  margin: 0% auto;
   overflow: hidden;
 }
 
@@ -428,9 +436,8 @@ ul.menu li:hover p {
 }
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
   background-color: rgba(239, 242, 252, 0.801);
   ;

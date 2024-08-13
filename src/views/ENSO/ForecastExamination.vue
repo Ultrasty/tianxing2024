@@ -232,25 +232,26 @@ import {
     <div>
       <p></p>
     </div>
-    <div class="text-container" v-if="chartSelected === 0">
-      <p class="text_of_graph">{{ Chart1_Description.text }}</p>
-    </div>
-    <div class="text-container" v-if="chartSelected === 1">
-      <p class="text_of_graph">{{ Chart2_Description.text }}</p>
-    </div>
-    <div class="text-container" v-if="chartSelected === 2">
-      <p class="text_of_graph">{{ Chart3_Description.text }}</p>
-    </div>
-    <div class="text-container" v-if="chartSelected === 3">
-      <p class="text_of_graph">{{ Chart4_Description.text }}</p>
-    </div>
+    <div style="margin: 0 10%">
+      <div class="text-container" v-if="chartSelected === 0">
+        <p class="text_of_graph">{{ Chart1_Description.text }}</p>
+      </div>
+      <div class="text-container" v-if="chartSelected === 1">
+        <p class="text_of_graph">{{ Chart2_Description.text }}</p>
+      </div>
+      <div class="text-container" v-if="chartSelected === 2">
+        <p class="text_of_graph">{{ Chart3_Description.text }}</p>
+      </div>
+      <div class="text-container" v-if="chartSelected === 3">
+        <p class="text_of_graph">{{ Chart4_Description.text }}</p>
+      </div>
 
-    <div class="datePickerContainer">
-      <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
-        :disabledDate="limitedDateRange" />
+      <div class="datePickerContainer">
+        <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
+          :disabledDate="limitedDateRange" />
+      </div>
     </div>
-
-    <div class="chart-selector" v-if="chartSelected === 0">
+    <div class="chart-selector1" v-if="chartSelected === 0">
       <v-chart class="chart1" :option="chart1" autoresize></v-chart>
     </div>
 
@@ -271,6 +272,7 @@ import {
       <v-chart class="chart" :option="chart4" autoresize></v-chart>
     </div>
   </div>
+
 </template>
 
 <style scoped lang="scss">
@@ -290,9 +292,8 @@ import {
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  padding-right: 15%;
-  padding-top: 50px;
-  margin-bottom: 20px;
+  position: relative;
+  padding: 50px 0 30px;
 }
 
 .text {
@@ -418,14 +419,23 @@ ul.menu li:hover p {
   /* 确保滑动条在覆盖层之上 */
 }
 
+.chart-selector1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0%;
+  margin: 0px 6.6%;
+}
+
 .chart-name-selected {
   color: blue;
 }
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
   background-color: rgba(239, 242, 252, 0.801);
   ;

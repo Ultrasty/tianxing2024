@@ -302,6 +302,7 @@ onMounted(
     <div>
       <p></p>
     </div>
+    <div style="margin: 0px 10%;">
     <div class="text-container" v-if="chartSelected === 0">
       <div class="description">
         {{ NAOIDescription }}
@@ -315,6 +316,7 @@ onMounted(
       <el-date-picker @change="updateSLPChart" v-if="selectedSLP" type="month" v-model="selectedDate" :clearable="false"
         :disabled-date="SLPDisabledYear" />
     </div>
+  </div>
 
     <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="NAOIChart" :option="NAOIOption" autoresize />
@@ -361,9 +363,8 @@ onMounted(
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
-  padding-right: 15%;
-  padding-top: 50px;
+  position:relative;
+  padding:50px 0 30px;
 }
 
 .text {
@@ -373,12 +374,14 @@ onMounted(
 
 .imgContainer {
   overflow: hidden;
+  margin: 0px 10%;
 }
 
 .image {
   width: 100%;
   margin-top: -7.5%;
-  transform: translateX(-3%);
+  margin-bottom: -5%;
+  // transform: translateX(-3%);
 }
 
 // 以下是新加代码
@@ -479,12 +482,12 @@ ul.menu li:hover p {
 
 .chart-selector {
   position: relative;
-  //修改为块级
-  display: block;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 15%;
+  padding: 0px 0%;
+  margin: 0px 0%;
 }
 
 .chart-name-selected {
@@ -492,9 +495,8 @@ ul.menu li:hover p {
 }
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
   background-color: rgba(239, 242, 252, 0.801);
   ;

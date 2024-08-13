@@ -167,6 +167,8 @@ const movBoxStyle = computed(() => ({
     <div>
       <p></p>
     </div>
+
+    <div style="margin: 0px 10%;">
     <div class="text-container" v-if="chartSelected === 0">
       <div class="description">
         {{ text_of_option1 }}
@@ -183,8 +185,7 @@ const movBoxStyle = computed(() => ({
       <el-date-picker @change="updateChartTitle()" v-model="selectedDateTime" type="month" :clearable="false"
         :disabledDate="limitedDateRange" />
     </div>
-
-
+  </div>
     <div class="chart-selector" v-if="chartSelected === 1">
       <h2 class="chart-title">
         NAOI指数预测的相关系数
@@ -199,9 +200,11 @@ const movBoxStyle = computed(() => ({
         {{ selectedYear }}年{{ selectedMonth }}月 预测结果分布误差图
       </h2>
       <div class="whole_container">
+        <div style="margin: 0 10%;">
         <div class="pic_container">
           <immersive-picture :src="imgSrc_of_nao" />
         </div>
+      </div>
         <!-- <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft"
             @click=" change_time_nao('left')"></el-button>
           <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
@@ -282,9 +285,8 @@ const movBoxStyle = computed(() => ({
 .datePickerContainer {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
-  padding-right: 15%;
-  padding-top: 50px;
+  position:relative;
+  padding:50px 0 30px;
 }
 
 .text {
@@ -298,18 +300,19 @@ const movBoxStyle = computed(() => ({
 }
 
 .picture {
-  max-width: 100%;
-  display: flex;
+  width: 100%;
+  display: block;
   /* 将元素设置为块级元素 */
-  justify-content: center;
-  //margin-left: 3%;
-  margin-top: 0px;
-  // margin-bottom: -160px;
+  /* 确保图片不会超出父容器 */
+  // height: auto;
+  /* 保持图片比例 */
+  display: inline-block;
+  /* 使图片可以与 text-align 一起使用 */
 }
 
 .whole_container {
   //position: relative;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -317,7 +320,7 @@ const movBoxStyle = computed(() => ({
 
 .pic_container {
   overflow: hidden;
-  display: flex;
+  display: block;
   justify-content: center;
 }
 
@@ -424,7 +427,8 @@ ul.menu li:hover p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 15%;
+  padding: 0px 0%;
+  margin: 0px 0%;
 }
 
 .chart-name-selected {
@@ -432,9 +436,8 @@ ul.menu li:hover p {
 }
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
   background-color: rgba(239, 242, 252, 0.801);
   ;

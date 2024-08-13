@@ -404,7 +404,7 @@ ul.menu li:hover p {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
-  padding-right: 15%;
+  padding-right: 10%;
   padding-top: 50px;
 }
 

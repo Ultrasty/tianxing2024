@@ -417,24 +417,26 @@ import {
     <div>
       <p></p>
     </div>
-    <div class="text-container" v-if="chartSelected === 0">
-      <p class="text_of_graph">{{ text_of_temperature }}</p>
-    </div>
-    <div class="text-container" v-if="chartSelected === 1">
-      <p class="text_of_graph">{{ text_of_rain }}</p>
-    </div>
-    <div class="text-container" v-if="chartSelected === 2">
-      <div>
-        <p class="text_of_graph">{{ text_of_wind }}</p>
-        <p class="text_of_graph">{{ text_of_wind2 }}</p>
+
+    <div style="margin: 0px 10%;">
+      <div class="text-container" v-if="chartSelected === 0">
+        <p class="text_of_graph">{{ text_of_temperature }}</p>
+      </div>
+      <div class="text-container" v-if="chartSelected === 1">
+        <p class="text_of_graph">{{ text_of_rain }}</p>
+      </div>
+      <div class="text-container" v-if="chartSelected === 2">
+        <div>
+          <p class="text_of_graph">{{ text_of_wind }}</p>
+          <p class="text_of_graph">{{ text_of_wind2 }}</p>
+        </div>
+      </div>
+
+      <div class="datePickerContainer">
+        <el-date-picker @change="handleDateTimeChange()" v-model="selectedDateTime" type="date" :clearable="false"
+          :disabledDate="limitedDateRange" />
       </div>
     </div>
-
-    <div class="datePickerContainer">
-      <el-date-picker @change="handleDateTimeChange()" v-model="selectedDateTime" type="date" :clearable="false"
-        :disabledDate="limitedDateRange" />
-    </div>
-
     <div class="chart-selector" v-if="chartSelected === 0">
       <div class="whole_container">
         <p class="picture_title">
@@ -492,6 +494,7 @@ import {
       </div>
     </div>
   </div>
+
 </template>
 
 <style scoped lang="scss">
@@ -537,9 +540,8 @@ import {
   /* 其他样式 */
   display: flex;
   justify-content: flex-end;
-  padding-right: 15%;
-  padding-top: 50px;
-  margin-bottom: 20px;
+  position: relative;
+  padding: 50px 0 30px;
 }
 
 .el-tabs {
@@ -718,9 +720,8 @@ ul.menu li:hover p {
 }
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
   background-color: rgba(239, 242, 252, 0.801);
   ;
