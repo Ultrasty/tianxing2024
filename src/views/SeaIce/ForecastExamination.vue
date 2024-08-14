@@ -851,6 +851,7 @@ ul.menu li:hover p {
 .chart {
   margin-top: 50px;
   height: 500px;
+  background-color:white;
 }
 
 .description {

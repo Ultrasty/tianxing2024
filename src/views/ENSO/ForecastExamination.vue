@@ -305,11 +305,13 @@ import {
 .chart1 {
   height: 50vh;
   min-height: 700px;
+  background-color:white;
 }
 
 .chart {
   height: 50vh;
   min-height: 500px;
+  background-color:white;
 }
 
 .text_of_graph {

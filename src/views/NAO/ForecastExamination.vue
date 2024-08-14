@@ -246,6 +246,7 @@ const movBoxStyle = computed(() => ({
 
 .chart {
   height: 500px;
+  background-color:white;
 }
 
 .datePickerContainer {
@@ -268,6 +269,7 @@ const movBoxStyle = computed(() => ({
 
 .chart {
   width: 100%;
+  background-color:white;
 }
 
 .description {

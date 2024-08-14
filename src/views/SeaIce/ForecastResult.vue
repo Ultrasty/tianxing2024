@@ -432,6 +432,7 @@ ul.menu li:hover p {
 
 .SIEChart {
   height: 500px;
+  background-color:white;
 }
 
 .image {

@@ -353,6 +353,7 @@ onMounted(
 
 .NAOIChart {
   height: 500px;
+  background-color:white;
 }
 
 .description {

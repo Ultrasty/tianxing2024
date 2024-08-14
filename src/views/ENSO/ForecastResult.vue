@@ -398,6 +398,7 @@ ul.menu li:hover p {
 .chart_1 {
   height: 50vh;
   min-height: 400px;
+  background-color:white;
 }
 
 .picture {
