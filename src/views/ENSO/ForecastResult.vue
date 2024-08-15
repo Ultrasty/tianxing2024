@@ -206,10 +206,11 @@ import {
     </div>
 
 
-    <div>
-      <p></p>
-    </div>
     <div style="margin: 0px 10%;">
+      <div class="datePickerContainer">
+        <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
+          :disabledDate="limitedDateRange" />
+      </div>
 
       <div class="text-container" v-if="chartSelected === 0">
         <p class="text_of_graph">{{ Chart1_Description.text }}</p>
@@ -217,13 +218,9 @@ import {
       <!-- <div class="text-container" v-if="chartSelected === 1">
       <p class="text_of_graph">{{ Chart2_Description.text }}</p>
     </div> -->
-
-
-      <div class="datePickerContainer">
-        <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
-          :disabledDate="limitedDateRange" />
+      <div>
+        <p></p>
       </div>
-
     </div>
 
     <div class="chart-selector" v-if="chartSelected === 0">
@@ -232,19 +229,18 @@ import {
 
 
     <div class="chart-selector" v-else-if="chartSelected === 1">
-      <div style="margin: 0px 10%;">
-        <p class="picture_title">
-          {{ title_of_heat }}
-        </p>
-        <div class="pic_container">
-          <immersive-picture :src="imgSrc_of_heat" />
-        </div>
-        <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
-          @click="change_time_heat('left')"></el-button>
-        <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
-          @click="change_time_heat('right')"></el-button>
+      <p class="picture_title">
+        {{ title_of_heat }}
+      </p>
+      <div class="pic_container">
+        <immersive-picture :src="imgSrc_of_heat" />
       </div>
+      <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
+        @click="change_time_heat('left')"></el-button>
+      <el-button ref="buttonRight" type="primary" class="arrow-right" :icon="ArrowRight"
+        @click="change_time_heat('right')"></el-button>
     </div>
+  </div>
   </div>
 </template>
 
@@ -398,7 +394,13 @@ ul.menu li:hover p {
 .chart_1 {
   height: 50vh;
   min-height: 400px;
-  background-color:white;
+  background-color: white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .picture {
@@ -419,6 +421,13 @@ ul.menu li:hover p {
   max-width: 100%;
   margin: 0% auto;
   overflow: hidden;
+  background-color: white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .picture_title {

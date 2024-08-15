@@ -414,11 +414,13 @@ import {
       </ul>
     </div>
 
-    <div>
-      <p></p>
-    </div>
-
     <div style="margin: 0px 10%;">
+
+      <div class="datePickerContainer">
+        <el-date-picker @change="handleDateTimeChange()" v-model="selectedDateTime" type="date" :clearable="false"
+          :disabledDate="limitedDateRange" />
+      </div>
+
       <div class="text-container" v-if="chartSelected === 0">
         <p class="text_of_graph">{{ text_of_temperature }}</p>
       </div>
@@ -432,11 +434,12 @@ import {
         </div>
       </div>
 
-      <div class="datePickerContainer">
-        <el-date-picker @change="handleDateTimeChange()" v-model="selectedDateTime" type="date" :clearable="false"
-          :disabledDate="limitedDateRange" />
-      </div>
     </div>
+
+    <div>
+      <p></p>
+    </div>
+
     <div class="chart-selector" v-if="chartSelected === 0">
       <div class="whole_container">
         <p class="picture_title">
@@ -479,6 +482,9 @@ import {
           @click="change_time_wind('left')"></el-button>
         <el-button ref="buttonRightWind" type="primary" class="arrow-right" :icon="ArrowRight"
           @click="change_time_wind('right')"></el-button>
+      </div>
+      <div>
+        <p></p>
       </div>
       <div class="whole_container">
         <p class="picture_title">
@@ -589,6 +595,13 @@ import {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /* 预报误差页面的容器 */

@@ -164,11 +164,15 @@ const movBoxStyle = computed(() => ({
       </ul>
     </div>
 
-    <div>
-      <p></p>
-    </div>
+
 
     <div style="margin: 0px 10%;">
+
+      <div class="datePickerContainer">
+        <el-date-picker @change="updateChartTitle()" v-model="selectedDateTime" type="month" :clearable="false"
+          :disabledDate="limitedDateRange" />
+      </div>
+
       <div class="text-container" v-if="chartSelected === 0">
         <div class="description">
           {{ text_of_option1 }}
@@ -180,12 +184,12 @@ const movBoxStyle = computed(() => ({
           {{ text_of_option7 }}
         </div>
       </div>
-
-      <div class="datePickerContainer">
-        <el-date-picker @change="updateChartTitle()" v-model="selectedDateTime" type="month" :clearable="false"
-          :disabledDate="limitedDateRange" />
-      </div>
     </div>
+
+    <div>
+      <p></p>
+    </div>
+
     <div class="chart-selector" v-if="chartSelected === 1">
       <h2 class="chart-title">
         NAOI指数预测的相关系数
@@ -209,11 +213,11 @@ const movBoxStyle = computed(() => ({
             @click=" change_time_nao('left')"></el-button>
           <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
             @click=" change_time_nao('right')"></el-button> -->
+        <!-- </div> -->
       </div>
+
+
     </div>
-
-
-  </div>
 </template>
 
 <style scoped lang="scss">
@@ -246,7 +250,7 @@ const movBoxStyle = computed(() => ({
 
 .chart {
   height: 500px;
-  background-color:white;
+  background-color: white;
 }
 
 .datePickerContainer {
@@ -269,7 +273,13 @@ const movBoxStyle = computed(() => ({
 
 .chart {
   width: 100%;
-  background-color:white;
+  background-color: white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .description {
@@ -302,28 +312,38 @@ const movBoxStyle = computed(() => ({
 }
 
 .picture {
-  width: 100%;
+  min-width: 100%;
   display: block;
   /* 将元素设置为块级元素 */
   /* 确保图片不会超出父容器 */
   // height: auto;
   /* 保持图片比例 */
-  display: inline-block;
   /* 使图片可以与 text-align 一起使用 */
+  background-color: white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .whole_container {
-  //position: relative;
+  // position: relative;
   display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 0;
+  padding: 0 0;
 }
 
 .pic_container {
   overflow: hidden;
   display: block;
   justify-content: center;
+  padding: 0px 0%;
+  margin: 0px 0%;
 }
 
 //以下新加代码

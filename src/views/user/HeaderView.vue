@@ -1,16 +1,19 @@
 <template>
-  <div class="header-container">
+  <div class="header-container" v-show="isHeaderVisible">
     <div class="header-content">
-      <router-link :to="{ name: 'home' }">
-        <img class='logo' :src="logo" />
+      <router-link :to="{ name: 'home' }" class="logo-container">
+        <img class='logo_img' :src="logo_img" />
+        <!-- 白色 logo -->
+        <img class='logo_txt logo_txt_w' :src="logo_txt_w" />
+        <!-- 黑色 logo -->
+        <img class='logo_txt logo_txt_b' :src="logo_txt_b" />
       </router-link>
       <div class="nav-wrapper">
-        <div class="nav-items" :style="{ zIndex: 1200 }">
+        <div class="nav-items">
           <div v-for="menu in menus" :key="menu.name" @mouseenter="handleMouseEnterNavItem(menu, $event)"
-               @mouseleave="handleMouseLeaveNavItem" class="nav-item" :class="{ active: isActive(menu.name) }">
-            <DropdownMenu :title="menu.title" :subMenus="menu.subMenus"
-                          :isVisible="nav_item_selected === menu.name"
-                          :style="{ left: menu.offsetLeft + 'px', zIndex: -10 }" />
+            @mouseleave="handleMouseLeaveNavItem" class="nav-item" :class="{ active: isActive(menu.name) }">
+            <DropdownMenu :title="menu.title" :subMenus="menu.subMenus" :isVisible="nav_item_selected === menu.name"
+              :style="{ left: menu.offsetLeft + 'px', zIndex: -10 }" />
             <span class="nav-link">{{ menu.title }}</span>
           </div>
         </div>
@@ -20,9 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-import logo from '@/assets/logo.png'
-import DropdownMenu from '@/views/user/DropdownMenu.vue'
 import { ref } from 'vue';
+import logo_img from '@/assets/logo-img.png';
+import logo_txt_b from '@/assets/logo-txt-b.png';
+import logo_txt_w from '@/assets/logo-txt-w.png';
+
+import DropdownMenu from '@/views/user/DropdownMenu.vue';
+
+const isHeaderVisible = ref(true);
 
 const menus = ref([
   {
@@ -80,15 +88,62 @@ const handleMouseLeaveNavItem = () => {
 const isActive = (menuName: string) => {
   return nav_item_selected.value === menuName;
 };
+
 </script>
 
 <style scoped>
 .header-container {
-  border-bottom: 1px solid #C9C5BC;
-  background-color: white;
-  position: relative;
-  z-index: 50;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  position: fixed;
+  width: 100vw;
+  z-index: 5000;
+   transition: 0.5s ease;
 }
+
+.header-container:hover {
+  /* border-bottom: 1px solid #C9C5BC; */
+  background: none;
+  background-color: rgb(255, 255, 255);
+}
+
+.logo-container {
+  position: relative;
+  height: 40px;
+  width: 800px;
+  display: flex;
+  align-items: center;
+}
+
+.logo_txt {
+  position: absolute;
+  top: 0;
+  left: 100px;
+  height: 100%;
+  transition: opacity 0.5s ease;
+}
+
+.logo_txt_w {
+  opacity: 1;
+  /* 初始显示白色 */
+  z-index: 1;
+}
+
+.logo_txt_b {
+  opacity: 0;
+  /* 初始隐藏黑色 */
+  z-index: 2;
+}
+
+.header-container:hover .logo_txt_w {
+  opacity: 0;
+  /* hover 时隐藏白色 */
+}
+
+.header-container:hover .logo_txt_b {
+  opacity: 1;
+  /* hover 时显示黑色 */
+}
+
 
 .header-content {
   width: 100%;
@@ -96,10 +151,12 @@ const isActive = (menuName: string) => {
   margin: 0 auto;
   display: flex;
   align-items: center;
+z-index: 10;
 }
 
-.logo {
+.logo_img {
   height: 100%;
+  margin-left: 30px;
   object-fit: cover;
   cursor: pointer;
   display: block;

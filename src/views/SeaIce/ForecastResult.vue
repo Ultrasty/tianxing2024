@@ -255,9 +255,15 @@ onMounted(() => {
       </ul>
     </div>
 
-    <div>
-      <p></p>
+    <div style="margin: 0 10%;">
+
+    <div class="datePickerContainer">
+      <el-date-picker @change="updateSIEChartTitle" v-model="selectedTime" :clearable="false" type="month"
+        :disabled-date="disabledMonth" v-if="selectedSIE" />
+      <el-date-picker @change="updateSICChart" v-model="selectedTime" :clearable="false" :disabled-date="disabledDate"
+        v-if="selectedSIC" />
     </div>
+
     <div class="text-container" v-if="selectedSIE">
       <div class="description">
         {{ SIEDescription }}
@@ -270,28 +276,27 @@ onMounted(() => {
     <h1 v-show="selectedSIC" class="title">
       {{ SICChartTitle }}
     </h1> -->
-
-    <div class="datePickerContainer">
-      <el-date-picker @change="updateSIEChartTitle" v-model="selectedTime" :clearable="false" type="month"
-        :disabled-date="disabledMonth" v-if="selectedSIE" />
-      <el-date-picker @change="updateSICChart" v-model="selectedTime" :clearable="false" :disabled-date="disabledDate"
-        v-if="selectedSIC" />
     </div>
 
-
-    <div v-if="selectedSIE" class="SIEChartContainer">
+    <div><p></p></div>
+    
+    <div v-if="selectedSIE" class="chart-selector">
       <v-chart class="SIEChart" :option="SIEOption" autoresize />
     </div>
 
-    <div v-if="selectedSIC">
+    <div style="margin:0 10%;">
+    <div v-if="selectedSIC" class="whole_container">
       <h3 style="text-align: center; margin-top: 0px; font-size: 18px">{{ SICChartTitle }}</h3>
       <h4 style="text-align: center; margin-top: 0px; font-size: 16px">({{ imgIndex + 1 }}/{{ imgSrc.length }})</h4>
       <div class="imageContainer">
-        <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft" @click="changeIndex('left')" />
+        <div>
         <img v-if="imgSrc.length" :src="'http://tianxing.tongji.edu.cn' + imgSrc[imgIndex]" class="image" alt="" />
+        </div>
+        <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft" @click="changeIndex('left')" />
         <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
           @click="changeIndex('right')" />
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -401,11 +406,12 @@ ul.menu li:hover p {
 }
 
 .datePickerContainer {
+  /* 其他样式 */
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
-  padding-right: 10%;
-  padding-top: 50px;
+  position: relative;
+  padding: 50px 0 30px;
+  margin-right: 5%; //new
 }
 
 .SIEChartContainer {
@@ -414,7 +420,7 @@ ul.menu li:hover p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 15%;
+  // padding: 0px 15%;
 }
 
 .text {
@@ -422,31 +428,59 @@ ul.menu li:hover p {
   margin-right: 10px;
 }
 
-.imageContainer {
+.whole_container {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
+}
+
+.imageContainer {
+  text-align: center;
+  /* 使图片在容器内居中 */
+  max-width: 100%;
+  // margin: 0% 10%;
+  overflow: hidden;
+  background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 40%;
+  margin: auto;
 }
 
 .SIEChart {
   height: 500px;
   background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
+//这里应用全球天气的picture样式
 .image {
-  height: 100%;
+  width: 100%;
+  display: block;
+  /* 将元素设置为块级元素 */
+  height: auto;
+  /* 保持图片比例 */
+  display: inline-block;
+  /* 使图片可以与 text-align 一起使用 */
 }
 
-/* 设置箭头按钮的样式 */
-.el-button.arrowLeft,
-.el-button.arrowRight {
-  position: relative;
-  margin: 20px;
-  width: 40px;
-  height: 80px;
-}
+//下面这个样式不用加，因为全局样式里面有对应的了
+
+// /* 设置箭头按钮的样式 */
+// .el-button.arrowLeft,
+// .el-button.arrowRight {
+//   position: relative;
+//   margin: 20px;
+//   width: 40px;
+//   height: 80px;
+// }
 
 
 .description {
@@ -457,17 +491,18 @@ ul.menu li:hover p {
 }
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
-  background-color:rgba(239, 242, 252, 0.801);; 
+  background-color: rgba(239, 242, 252, 0.801);
+  ;
   /* 淡紫色 */
   display: flex;
   padding: 20px;
   border-radius: 8px;
   /* 可选的圆角 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893); /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  /* 阴影 */
   font-family: 'STKaiti';
   // font-size: 18px;
 }

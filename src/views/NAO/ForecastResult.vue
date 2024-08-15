@@ -299,16 +299,8 @@ onMounted(
       </ul>
     </div>
 
-    <div>
-      <p></p>
-    </div>
-    <div style="margin: 0px 10%;">
-      <div class="text-container" v-if="chartSelected === 0">
-        <div class="description">
-          {{ NAOIDescription }}
-        </div>
-      </div>
 
+    <div style="margin: 0px 10%;">
 
       <div class="datePickerContainer">
         <el-date-picker @change="updateNAOIChart" v-if="selectedNAOI" type="month" v-model="selectedDate"
@@ -316,6 +308,16 @@ onMounted(
         <el-date-picker @change="updateSLPChart" v-if="selectedSLP" type="month" v-model="selectedDate"
           :clearable="false" :disabled-date="SLPDisabledYear" />
       </div>
+      
+      <div class="text-container" v-if="chartSelected === 0">
+        <div class="description">
+          {{ NAOIDescription }}
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <p></p>
     </div>
 
     <div class="chart-selector" v-if="chartSelected === 0">
@@ -354,6 +356,12 @@ onMounted(
 .NAOIChart {
   height: 500px;
   background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .description {
@@ -375,7 +383,14 @@ onMounted(
 
 .imgContainer {
   overflow: hidden;
-  margin: 0px 10%;
+  // margin: 0px 10%;
+  background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .image {

@@ -229,10 +229,15 @@ import {
         </li>
       </ul>
     </div>
-    <div>
-      <p></p>
-    </div>
+
     <div style="margin: 0 10%">
+
+
+      <div class="datePickerContainer">
+        <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
+          :disabledDate="limitedDateRange" />
+      </div>
+      
       <div class="text-container" v-if="chartSelected === 0">
         <p class="text_of_graph">{{ Chart1_Description.text }}</p>
       </div>
@@ -245,17 +250,17 @@ import {
       <div class="text-container" v-if="chartSelected === 3">
         <p class="text_of_graph">{{ Chart4_Description.text }}</p>
       </div>
-
-      <div class="datePickerContainer">
-        <el-date-picker @change="update_charts()" v-model="currentDate" type="month" :clearable="false"
-          :disabledDate="limitedDateRange" />
-      </div>
     </div>
+
+    <div>
+      <p></p>
+    </div>
+
     <div class="chart-selector" v-if="chartSelected === 0">
       <v-chart class="chart1" :option="chart1" autoresize></v-chart>
     </div>
 
-    <div class="chart-selector-with-button" v-else-if="chartSelected === 1">
+    <div class="chart-selector" v-else-if="chartSelected === 1">
       <v-chart class="chart" :option="chart2" autoresize></v-chart>
       <el-button ref="buttonLeft" type="primary" class="arrow-left" :icon="ArrowLeft"
         @click="change_Month('left')"></el-button>
@@ -306,12 +311,26 @@ import {
   height: 50vh;
   min-height: 700px;
   background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .chart {
+  width:100%;
+  display: flex;
   height: 50vh;
   min-height: 500px;
   background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .text_of_graph {

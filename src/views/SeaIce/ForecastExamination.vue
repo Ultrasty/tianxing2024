@@ -703,9 +703,15 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
     </div>
 
 
-    <div>
-      <p></p>
+    <div style="margin: 0 10%;">
+
+    <div class="datePickerContainer">
+      <el-date-picker @change="updateChart()" v-model="currentDate" type="month" :clearable="false"
+        :disabledDate="limitedDateRange2" v-if="chartSelected === 0 || chartSelected === 2" />
+      <el-date-picker @change="updateChart()" v-model="currentDate" type="year" :clearable="false"
+        :disabledDate="limitedDateRange" v-if="chartSelected === 1" />
     </div>
+    
     <div class="text-container" v-if="chartSelected === 0">
       <div class="description">
         {{ SICChartErroPrediction }}
@@ -722,14 +728,9 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
       </div>
     </div>
 
-    <div><p></p></div>
-    
-    <div class="datePickerContainer">
-      <el-date-picker @change="updateChart()" v-model="currentDate" type="month" :clearable="false"
-        :disabledDate="limitedDateRange2" v-if="chartSelected === 0 || chartSelected === 2" />
-      <el-date-picker @change="updateChart()" v-model="currentDate" type="year" :clearable="false"
-        :disabledDate="limitedDateRange" v-if="chartSelected === 1" />
-    </div>
+  </div>
+
+  <div><p></p></div>
 
     <div v-if="chartSelected === 0">
       <div class="chart">
@@ -849,9 +850,17 @@ ul.menu li:hover p {
 
 
 .chart {
-  margin-top: 50px;
+  margin: 0 10%;
   height: 500px;
   background-color:white;
+  /* 圆角 */
+  border-radius: 8px;
+  /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 82.5%;
+  margin: auto;
 }
 
 .description {
@@ -859,9 +868,12 @@ ul.menu li:hover p {
 }
 
 .datePickerContainer {
+  /* 其他样式 */
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  position: relative;
+  padding: 50px 0 30px;
+  margin-right: 9%; //new
 }
 
 .text {
@@ -871,19 +883,21 @@ ul.menu li:hover p {
 
 
 .text-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  position: relative;
+  margin: 0px auto;
   text-align: center;
-  background-color:rgba(239, 242, 252, 0.801);; 
+  background-color: rgba(239, 242, 252, 0.801);
+  ;
   /* 淡紫色 */
   display: flex;
   padding: 20px;
   border-radius: 8px;
   /* 可选的圆角 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893); /* 阴影 */
+  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
+  /* 阴影 */
   font-family: 'STKaiti';
   // font-size: 18px;
+  width: 80%;
 }
 
 </style>
