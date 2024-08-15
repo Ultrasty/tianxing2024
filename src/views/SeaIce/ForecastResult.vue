@@ -4,6 +4,7 @@ import axios from 'axios';
 import VChart from 'vue-echarts';
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue';
 import bannerImg from '@/assets/header.jpg';
+import ImmersivePicture from "../user/ImmersivePicture.vue";
 
 const selectedSIE = ref(true);
 const selectedSIC = ref(false);
@@ -257,20 +258,20 @@ onMounted(() => {
 
     <div style="margin: 0 10%;">
 
-    <div class="datePickerContainer">
-      <el-date-picker @change="updateSIEChartTitle" v-model="selectedTime" :clearable="false" type="month"
-        :disabled-date="disabledMonth" v-if="selectedSIE" />
-      <el-date-picker @change="updateSICChart" v-model="selectedTime" :clearable="false" :disabled-date="disabledDate"
-        v-if="selectedSIC" />
-    </div>
-
-    <div class="text-container" v-if="selectedSIE">
-      <div class="description">
-        {{ SIEDescription }}
+      <div class="datePickerContainer">
+        <el-date-picker @change="updateSIEChartTitle" v-model="selectedTime" :clearable="false" type="month"
+          :disabled-date="disabledMonth" v-if="selectedSIE" />
+        <el-date-picker @change="updateSICChart" v-model="selectedTime" :clearable="false" :disabled-date="disabledDate"
+          v-if="selectedSIC" />
       </div>
-    </div>
-    <!-- 不需要额外的表头 -->
-    <!-- <h1 v-show="selectedSIE" class="title">
+
+      <div class="text-container" v-if="selectedSIE">
+        <div class="description">
+          {{ SIEDescription }}
+        </div>
+      </div>
+      <!-- 不需要额外的表头 -->
+      <!-- <h1 v-show="selectedSIE" class="title">
       {{ SIEChartTitle }}
     </h1>
     <h1 v-show="selectedSIC" class="title">
@@ -278,25 +279,26 @@ onMounted(() => {
     </h1> -->
     </div>
 
-    <div><p></p></div>
-    
+    <div>
+      <p></p>
+    </div>
+
     <div v-if="selectedSIE" class="chart-selector">
       <v-chart class="SIEChart" :option="SIEOption" autoresize />
     </div>
 
     <div style="margin:0 10%;">
-    <div v-if="selectedSIC" class="whole_container">
-      <h3 style="text-align: center; margin-top: 0px; font-size: 18px">{{ SICChartTitle }}</h3>
-      <h4 style="text-align: center; margin-top: 0px; font-size: 16px">({{ imgIndex + 1 }}/{{ imgSrc.length }})</h4>
-      <div class="imageContainer">
-        <div>
-        <img v-if="imgSrc.length" :src="'http://tianxing.tongji.edu.cn' + imgSrc[imgIndex]" class="image" alt="" />
+      <div v-if="selectedSIC" class="whole_container">
+        <h3 style="text-align: center; margin-top: 0px; font-size: 18px">{{ SICChartTitle }}</h3>
+        <h4 style="text-align: center; margin-top: 0px; font-size: 16px">({{ imgIndex + 1 }}/{{ imgSrc.length }})</h4>
+        <div class="imageContainer">
+          <immersive-picture style="width:70vh;" v-if="imgSrc.length"
+            :src="'http://tianxing.tongji.edu.cn' + imgSrc[imgIndex]" />
+          <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft" @click="changeIndex('left')" />
+          <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
+            @click="changeIndex('right')" />
         </div>
-        <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft" @click="changeIndex('left')" />
-        <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
-          @click="changeIndex('right')" />
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -308,9 +310,11 @@ onMounted(() => {
   text-align: center;
   font-size: 55px;
   margin-left: 20%;
-  letter-spacing: 1px; /* 字符间距 */
-  z-index: 1; /* 确保图片在文字下方 */
-  color:#ffffff;
+  letter-spacing: 1px;
+  /* 字符间距 */
+  z-index: 1;
+  /* 确保图片在文字下方 */
+  color: #ffffff;
 }
 
 .banner {
@@ -362,8 +366,10 @@ ul.menu li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* 更改鼠标形状为手形 */
-  overflow: hidden; /* 确保伪元素的边界与 li 元素一致 */
+  cursor: pointer;
+  /* 更改鼠标形状为手形 */
+  overflow: hidden;
+  /* 确保伪元素的边界与 li 元素一致 */
 }
 
 ul.menu li:not(:last-child)::after {
@@ -384,24 +390,31 @@ ul.menu li:hover::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(240, 240, 240, 0.8); /* 浅灰色 */
-  border-radius: 10px; /* 确保形状与选项卡一致 */
-  pointer-events: none; /* 确保伪元素不影响鼠标事件 */
-  z-index: 1; /* 确保覆盖层在文字和内容下方 */
+  background-color: rgba(240, 240, 240, 0.8);
+  /* 浅灰色 */
+  border-radius: 10px;
+  /* 确保形状与选项卡一致 */
+  pointer-events: none;
+  /* 确保伪元素不影响鼠标事件 */
+  z-index: 1;
+  /* 确保覆盖层在文字和内容下方 */
 }
 
 ul.menu li:hover p {
   color: rgb(255, 89, 0);
-  z-index: 2; /* 确保文字在覆盖层之上 */
+  z-index: 2;
+  /* 确保文字在覆盖层之上 */
 }
+
 .mov-box {
   position: absolute;
-  z-index: 3; /* 确保滑动条在覆盖层之上 */
+  z-index: 3;
+  /* 确保滑动条在覆盖层之上 */
 }
 
 
 .chart-name-selected {
-  color:blue;
+  color: blue;
   //color: rgba(0, 55, 255, 0.957);
 }
 
@@ -433,25 +446,16 @@ ul.menu li:hover p {
 }
 
 .imageContainer {
-  text-align: center;
-  /* 使图片在容器内居中 */
-  max-width: 100%;
-  // margin: 0% 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
   overflow: hidden;
-  background-color:white;
-  /* 圆角 */
-  border-radius: 8px;
-  /* 阴影 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
-  padding-top: 20px;
-  padding-bottom: 20px;
-  width: 40%;
-  margin: auto;
 }
 
 .SIEChart {
   height: 500px;
-  background-color:white;
+  background-color: white;
   /* 圆角 */
   border-radius: 8px;
   /* 阴影 */

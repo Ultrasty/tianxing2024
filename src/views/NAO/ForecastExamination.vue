@@ -203,21 +203,11 @@ const movBoxStyle = computed(() => ({
       <h2 class="chart-title">
         {{ selectedYear }}年{{ selectedMonth }}月 预测结果分布误差图
       </h2>
-      <div class="whole_container">
-        <div style="margin: 0 10%;">
-          <div class="pic_container">
-            <immersive-picture :src="imgSrc_of_nao" />
-          </div>
-        </div>
-        <!-- <el-button ref="buttonLeft" type="primary" class="arrowLeft" :icon="ArrowLeft"
-            @click=" change_time_nao('left')"></el-button>
-          <el-button ref="buttonRight" type="primary" class="arrowRight" :icon="ArrowRight"
-            @click=" change_time_nao('right')"></el-button> -->
-        <!-- </div> -->
+      <div class="pic_container">
+        <immersive-picture :src="imgSrc_of_nao" />
       </div>
-
-
     </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -339,11 +329,11 @@ const movBoxStyle = computed(() => ({
 }
 
 .pic_container {
-  overflow: hidden;
-  display: block;
+  display: flex;
   justify-content: center;
-  padding: 0px 0%;
-  margin: 0px 0%;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
 }
 
 //以下新加代码

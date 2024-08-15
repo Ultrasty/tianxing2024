@@ -591,15 +591,9 @@ import {
 
 .pic_container {
   display: flex;
-  height: 60vh;
+  height: 50vh;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: white;
-  /* 圆角 */
-  border-radius: 8px;
-  /* 阴影 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
   padding-top: 20px;
   padding-bottom: 20px;
 }

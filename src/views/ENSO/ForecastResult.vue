@@ -241,7 +241,6 @@ import {
         @click="change_time_heat('right')"></el-button>
     </div>
   </div>
-  </div>
 </template>
 
 <style scoped lang="scss">
@@ -416,18 +415,10 @@ ul.menu li:hover p {
 }
 
 .pic_container {
-  text-align: center;
-  /* 使图片在容器内居中 */
-  max-width: 100%;
-  margin: 0% auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
-  background-color: white;
-  /* 圆角 */
-  border-radius: 8px;
-  /* 阴影 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 .picture_title {
