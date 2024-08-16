@@ -735,7 +735,7 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
     </div>
 
     <div v-if="chartSelected === 0">
-      <div class="chart">
+      <div class="chart-selector">
         <v-chart :option="option1" autoresize></v-chart>
 
       </div>
@@ -761,9 +761,9 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
       </div>
       <div class="chart">
         <v-chart :option="option7" autoresize></v-chart>
-
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -899,6 +899,16 @@ ul.menu li.chart-name-selected:hover p {
   /* 确保滑动条在覆盖层之上 */
 }
 
+// .chart-selector {
+//   position: relative;
+//   //修改为块级
+//   display: block;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 0px 15%;
+// }
+
 .chart-name-selected {
   color: rgb(30, 158, 179)
 }
@@ -915,7 +925,7 @@ ul.menu li.chart-name-selected:hover p {
   box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
   padding-top: 20px;
   padding-bottom: 20px;
-  width: 82.5%;
+  // width: 82.5%;
   margin: auto;
 }
 
@@ -929,7 +939,7 @@ ul.menu li.chart-name-selected:hover p {
   justify-content: flex-end;
   position: relative;
   padding: 50px 0 30px;
-  margin-right: 9%; //new
+  // margin-right: 9%; //new
 }
 
 .text {
@@ -953,6 +963,6 @@ ul.menu li.chart-name-selected:hover p {
   /* 阴影 */
   font-family: 'STKaiti';
   // font-size: 18px;
-  width: 80%;
+  // width: 80%;
 }
 </style>

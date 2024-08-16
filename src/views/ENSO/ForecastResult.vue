@@ -227,7 +227,7 @@ import {
       <v-chart class="chart_1" :option="chart1" autoresize> </v-chart>
     </div>
 
-
+    <!-- 这里的chart-selector为全局样式，不用在本文件中添加 -->
     <div class="chart-selector" v-else-if="chartSelected === 1">
       <p class="picture_title">
         {{ title_of_heat }}
@@ -411,6 +411,16 @@ ul.menu li.chart-name-selected:hover p {
   z-index: 3;
   /* 确保滑动条在覆盖层之上 */
 }
+
+// .chart-selector {
+//   position: relative;
+//   //修改为块级
+//   display: block;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 0px 15%;
+// }
 
 .chart-name-selected {
   color: rgb(30, 158, 179)
