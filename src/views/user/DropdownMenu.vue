@@ -64,7 +64,7 @@ const props = defineProps<{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: rgba(161, 191, 255, 0.517);
+  background-color: rgba(161, 211, 255, 0.517);
 }
 
 .submenu-item {
@@ -73,8 +73,8 @@ const props = defineProps<{
   padding: 8px 4px;
   font-size: 1.1rem;
   text-decoration: none;
-  color: black;
-  transition: color 0.3s ease-in-out;
+  color: rgb(30, 30, 30);
+  transition: all 0.3s ease-in-out;
 }
 
 .submenu-item::before {
@@ -84,7 +84,7 @@ const props = defineProps<{
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #d9dee9;
+  background-color: #000000;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
 }
@@ -95,7 +95,7 @@ const props = defineProps<{
 }
 
 .submenu-item:hover {
-  color: #f3fafc;
+  color: #000000;
   font-weight: bold;
 }
 </style>

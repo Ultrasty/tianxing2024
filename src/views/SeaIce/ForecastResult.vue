@@ -58,9 +58,16 @@ function selectChart(index) {
   selectedSIE.value = index === 0;
   selectedSIC.value = index === 1;
   if (selectedSIE.value) {
-    selectedTime.value = new Date('2023-01');
+    // 选取可用时间
+    const latestEntry = SIEAvailableList.value[SIEAvailableList.value.length - 1];
+    selectedTime.value = new Date(latestEntry.year, latestEntry.month - 1);
     updateSIEChart();
   } else {
+    // 选取可用时间
+    let newestYear = Math.max(...SICAvailableList.value.yearList);
+    let newestMonth = Math.max(...SICAvailableList.value.monthList);
+    let newestDate = Math.max(...SICAvailableList.value.dateList);
+    selectedTime.value = new Date(newestYear, newestMonth - 1, newestDate);
     updateSICChart();
   }
 }
@@ -144,7 +151,6 @@ const initSICAvailableList = () => {
       let newestYear = Math.max(...SICAvailableList.value.yearList);
       let newestMonth = Math.max(...SICAvailableList.value.monthList);
       let newestDate = Math.max(...SICAvailableList.value.dateList);
-      //selectedDay.value = new Date(newestYear, newestMonth - 1, newestDate);
       selectedTime.value = new Date(newestYear, newestMonth - 1, newestDate);
       imgIndex.value = 0;
       loadImg(imgSrc.value);
