@@ -482,7 +482,7 @@ ul.menu li.chart-name-selected:hover p {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 60vh;
   overflow: hidden;
 }
 

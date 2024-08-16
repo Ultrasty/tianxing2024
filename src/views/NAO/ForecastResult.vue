@@ -386,14 +386,10 @@ onMounted(
 
 .imgContainer {
   overflow: hidden;
-  // margin: 0px 10%;
-  background-color: white;
-  /* 圆角 */
-  border-radius: 8px;
-  /* 阴影 */
-  box-shadow: 0px 0px 10px 1.5px rgba(199, 198, 198, 0.893);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
 }
 
 .image {

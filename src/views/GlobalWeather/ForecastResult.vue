@@ -595,7 +595,7 @@ import {
 
 .pic_container {
   display: flex;
-  height: 50vh;
+  height: 60vh;
   justify-content: center;
   align-items: center;
   padding-top: 20px;

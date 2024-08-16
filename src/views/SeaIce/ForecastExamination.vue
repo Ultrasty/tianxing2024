@@ -728,42 +728,41 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
         </div>
       </div>
 
-    </div>
 
-    <div>
-      <p></p>
-    </div>
-
-    <div v-if="chartSelected === 0">
-      <div class="chart-selector">
-        <v-chart :option="option1" autoresize></v-chart>
-
-      </div>
-      <div class="chart">
-        <v-chart :option="option2" autoresize></v-chart>
+      <div>
+        <p></p>
       </div>
 
-    </div>
-    <div v-else-if="chartSelected === 1">
-      <div class="chart">
-        <v-chart :option="option3" autoresize></v-chart>
+      <div v-if="chartSelected === 0">
+        <div class="chart-selector">
+          <v-chart :option="option1" autoresize></v-chart>
+
+        </div>
+        <div class="chart">
+          <v-chart :option="option2" autoresize></v-chart>
+        </div>
+
+      </div>
+      <div v-else-if="chartSelected === 1">
+        <div class="chart">
+          <v-chart :option="option3" autoresize></v-chart>
+        </div>
+      </div>
+      <div v-else-if="chartSelected === 2">
+        <div class="chart">
+          <v-chart :option="option4" autoresize></v-chart>
+        </div>
+        <div class="chart">
+          <v-chart :option="option5" autoresize></v-chart>
+        </div>
+        <div class="chart">
+          <v-chart :option="option6" autoresize></v-chart>
+        </div>
+        <div class="chart">
+          <v-chart :option="option7" autoresize></v-chart>
+        </div>
       </div>
     </div>
-    <div v-else-if="chartSelected === 2">
-      <div class="chart">
-        <v-chart :option="option4" autoresize></v-chart>
-      </div>
-      <div class="chart">
-        <v-chart :option="option5" autoresize></v-chart>
-      </div>
-      <div class="chart">
-        <v-chart :option="option6" autoresize></v-chart>
-      </div>
-      <div class="chart">
-        <v-chart :option="option7" autoresize></v-chart>
-      </div>
-    </div>
-  </div>
   </div>
 </template>
 
