@@ -157,7 +157,7 @@ defineExpose({
 
 /* 新版添加的代码========================================================== */
 import bannerImg from '@/assets/enso1.jpg';
-
+import ImmersivePicture from "../user/ImmersivePicture.vue";
 
 const chartSelected = ref(0);
 
@@ -410,16 +410,6 @@ ul.menu li.chart-name-selected:hover p {
   position: absolute;
   z-index: 3;
   /* 确保滑动条在覆盖层之上 */
-}
-
-.chart-selector {
-  position: relative;
-  //修改为块级
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 15%;
 }
 
 .chart-name-selected {

@@ -198,18 +198,18 @@ const option7 = ref({})
 const chartX = ref('')
 const chartX1 = ref('')
 chartX.value = [`${selectedYear.value}/${selectedMonth.value}/1`, `${selectedYear.value}/${selectedMonth.value}/2`, `${selectedYear.value}/${selectedMonth.value}/3`,
-  `${selectedYear.value}/${selectedMonth.value}/4`, `${selectedYear.value}/${selectedMonth.value}/5`, `${selectedYear.value}/${selectedMonth.value}/6`,
-  `${selectedYear.value}/${selectedMonth.value}/7`, `${selectedYear.value}/${selectedMonth.value}/8`, `${selectedYear.value}/${selectedMonth.value}/9`,
-  `${selectedYear.value}/${selectedMonth.value}/10`, `${selectedYear.value}/${selectedMonth.value}/11`, `${selectedYear.value}/${selectedMonth.value}/12`,
-  `${selectedYear.value}/${selectedMonth.value}/13`, `${selectedYear.value}/${selectedMonth.value}/14`, `${selectedYear.value}/${selectedMonth.value}/15`,
-  `${selectedYear.value}/${selectedMonth.value}/16`, `${selectedYear.value}/${selectedMonth.value}/17`, `${selectedYear.value}/${selectedMonth.value}/18`,
-  `${selectedYear.value}/${selectedMonth.value}/19`, `${selectedYear.value}/${selectedMonth.value}/20`, `${selectedYear.value}/${selectedMonth.value}/21`,
-  `${selectedYear.value}/${selectedMonth.value}/22`, `${selectedYear.value}/${selectedMonth.value}/23`, `${selectedYear.value}/${selectedMonth.value}/24`,
-  `${selectedYear.value}/${selectedMonth.value}/25`, `${selectedYear.value}/${selectedMonth.value}/26`, `${selectedYear.value}/${selectedMonth.value}/27`,]
+`${selectedYear.value}/${selectedMonth.value}/4`, `${selectedYear.value}/${selectedMonth.value}/5`, `${selectedYear.value}/${selectedMonth.value}/6`,
+`${selectedYear.value}/${selectedMonth.value}/7`, `${selectedYear.value}/${selectedMonth.value}/8`, `${selectedYear.value}/${selectedMonth.value}/9`,
+`${selectedYear.value}/${selectedMonth.value}/10`, `${selectedYear.value}/${selectedMonth.value}/11`, `${selectedYear.value}/${selectedMonth.value}/12`,
+`${selectedYear.value}/${selectedMonth.value}/13`, `${selectedYear.value}/${selectedMonth.value}/14`, `${selectedYear.value}/${selectedMonth.value}/15`,
+`${selectedYear.value}/${selectedMonth.value}/16`, `${selectedYear.value}/${selectedMonth.value}/17`, `${selectedYear.value}/${selectedMonth.value}/18`,
+`${selectedYear.value}/${selectedMonth.value}/19`, `${selectedYear.value}/${selectedMonth.value}/20`, `${selectedYear.value}/${selectedMonth.value}/21`,
+`${selectedYear.value}/${selectedMonth.value}/22`, `${selectedYear.value}/${selectedMonth.value}/23`, `${selectedYear.value}/${selectedMonth.value}/24`,
+`${selectedYear.value}/${selectedMonth.value}/25`, `${selectedYear.value}/${selectedMonth.value}/26`, `${selectedYear.value}/${selectedMonth.value}/27`,]
 
 chartX1.value = [`${selectedYear.value - 2}spring`, `${selectedYear.value - 2}summer`, `${selectedYear.value - 2}fall`, `${selectedYear.value - 2}winter`,
-  `${selectedYear.value - 1}spring`, `${selectedYear.value - 1}summer`, `${selectedYear.value - 1}fall`, `${selectedYear.value - 1}winter`,
-  `${selectedYear.value}spring`, `${selectedYear.value}summer`, `${selectedYear.value}fall`, `${selectedYear.value}winter`
+`${selectedYear.value - 1}spring`, `${selectedYear.value - 1}summer`, `${selectedYear.value - 1}fall`, `${selectedYear.value - 1}winter`,
+`${selectedYear.value}spring`, `${selectedYear.value}summer`, `${selectedYear.value}fall`, `${selectedYear.value}winter`
 ]
 
 
@@ -688,7 +688,7 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
 <template>
   <div class="pageContent">
     <div class="banner">
-      <img :src="bannerImg"/>
+      <img :src="bannerImg" />
       <h3 class="title">海冰预测结果检验</h3>
     </div>
 
@@ -696,7 +696,7 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
       <ul class="menu">
         <div :style="movBoxStyle"></div>
         <li v-for="(chartName, index) in chartNames" :key="chartName" @click="selectChart(index)"
-            :class="{ 'chart-name-selected': chartSelected === index }">
+          :class="{ 'chart-name-selected': chartSelected === index }">
           <p>{{ chartName }}</p>
         </li>
       </ul>
@@ -705,32 +705,34 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
 
     <div style="margin: 0 10%;">
 
-    <div class="datePickerContainer">
-      <el-date-picker @change="updateChart()" v-model="currentDate" type="month" :clearable="false"
-        :disabledDate="limitedDateRange2" v-if="chartSelected === 0 || chartSelected === 2" />
-      <el-date-picker @change="updateChart()" v-model="currentDate" type="year" :clearable="false"
-        :disabledDate="limitedDateRange" v-if="chartSelected === 1" />
-    </div>
-    
-    <div class="text-container" v-if="chartSelected === 0">
-      <div class="description">
-        {{ SICChartErroPrediction }}
+      <div class="datePickerContainer">
+        <el-date-picker @change="updateChart()" v-model="currentDate" type="month" :clearable="false"
+          :disabledDate="limitedDateRange2" v-if="chartSelected === 0 || chartSelected === 2" />
+        <el-date-picker @change="updateChart()" v-model="currentDate" type="year" :clearable="false"
+          :disabledDate="limitedDateRange" v-if="chartSelected === 1" />
       </div>
-    </div>
-    <div class="text-container" v-if="chartSelected === 1">
-      <div class="description">
-        {{ SICChartErroAdd }}
+
+      <div class="text-container" v-if="chartSelected === 0">
+        <div class="description">
+          {{ SICChartErroPrediction }}
+        </div>
       </div>
-    </div>
-    <div class="text-container" v-if="chartSelected === 2">
-      <div class="description">
-        {{ SIEChartErroAnalyse }}
+      <div class="text-container" v-if="chartSelected === 1">
+        <div class="description">
+          {{ SICChartErroAdd }}
+        </div>
       </div>
+      <div class="text-container" v-if="chartSelected === 2">
+        <div class="description">
+          {{ SIEChartErroAnalyse }}
+        </div>
+      </div>
+
     </div>
 
-  </div>
-
-  <div><p></p></div>
+    <div>
+      <p></p>
+    </div>
 
     <div v-if="chartSelected === 0">
       <div class="chart">
@@ -773,10 +775,12 @@ axios.get('/seaice/predictionExamination/errorAnalysis?year=2022')
   text-align: center;
   font-size: 55px;
   margin-left: 20%;
-  letter-spacing: 1px; /* 字符间距 */
-  z-index: 1; /* 确保图片在文字下方 */
+  letter-spacing: 1px;
+  /* 字符间距 */
+  z-index: 1;
+  /* 确保图片在文字下方 */
   //color:#ffffff;
-  color:rgb(19, 24, 36);
+  color: rgb(19, 24, 36);
 }
 
 .banner {
@@ -819,8 +823,10 @@ ul.menu {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-  overflow: hidden; /* 新增: 确保伪元素不会超出 ul.menu 边界 */
+  overflow: hidden;
+  /* 新增: 确保伪元素不会超出 ul.menu 边界 */
 }
+
 /* 新增: 添加一个伪元素用于整个选项卡区域的上半部分透明或阴影效果 */
 ul.menu::before {
   content: "";
@@ -828,11 +834,16 @@ ul.menu::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: 55%; /* 仅覆盖上半部分 */
-  background-color: rgba(240, 240, 240, 0.8); /* 上半部分透明效果，或更改为 box-shadow 实现阴影效果 */
-  z-index: 0; /* 确保伪元素在 li 元素下方 */
-  pointer-events: none; /* 确保透明层不影响鼠标事件 */
+  height: 55%;
+  /* 仅覆盖上半部分 */
+  background-color: rgba(240, 240, 240, 0.8);
+  /* 上半部分透明效果，或更改为 box-shadow 实现阴影效果 */
+  z-index: 0;
+  /* 确保伪元素在 li 元素下方 */
+  pointer-events: none;
+  /* 确保透明层不影响鼠标事件 */
 }
+
 ul.menu li {
   position: relative;
   display: flex;
@@ -841,8 +852,10 @@ ul.menu li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* 更改鼠标形状为手形 */
-  overflow: hidden; /* 确保伪元素的边界与 li 元素一致 */
+  cursor: pointer;
+  /* 更改鼠标形状为手形 */
+  overflow: hidden;
+  /* 确保伪元素的边界与 li 元素一致 */
 }
 
 ul.menu li:not(:last-child)::after {
@@ -855,6 +868,7 @@ ul.menu li:not(:last-child)::after {
   background-color: #00000020;
   transform: translateY(-50%);
 }
+
 // ul.menu li:hover::before {
 //   content: "";
 //   position: absolute;
@@ -870,28 +884,23 @@ ul.menu li:not(:last-child)::after {
 
 ul.menu li:hover p {
   color: rgb(71, 72, 76);
-  z-index: 2; /* 确保文字在覆盖层之上 */
+  z-index: 2;
+  /* 确保文字在覆盖层之上 */
 }
+
 /* 已经被选中的选项卡在鼠标悬停时字体颜色不变 */
 ul.menu li.chart-name-selected:hover p {
   color: inherit; //保持原有颜色
 }
+
 .mov-box {
   position: absolute;
-  z-index: 3; /* 确保滑动条在覆盖层之上 */
-}
-.chart-selector {
-  position: relative;
-  //修改为块级
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 15%;
+  z-index: 3;
+  /* 确保滑动条在覆盖层之上 */
 }
 
 .chart-name-selected {
-  color:rgb(30, 158, 179)
+  color: rgb(30, 158, 179)
 }
 
 
@@ -899,7 +908,7 @@ ul.menu li.chart-name-selected:hover p {
 .chart {
   margin: 0 10%;
   height: 500px;
-  background-color:white;
+  background-color: white;
   /* 圆角 */
   border-radius: 8px;
   /* 阴影 */
@@ -946,6 +955,4 @@ ul.menu li.chart-name-selected:hover p {
   // font-size: 18px;
   width: 80%;
 }
-
 </style>
-

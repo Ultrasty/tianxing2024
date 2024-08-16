@@ -5,6 +5,8 @@ import axios from "axios";
 import VChart from 'vue-echarts';
 import { nextTick } from "vue";
 import { configProviderContextKey } from "element-plus";
+import ImmersivePicture from "../user/ImmersivePicture.vue";
+
 //时间选择器范围框定--start
 const start_time = ref(null);
 const end_time = ref(null);
