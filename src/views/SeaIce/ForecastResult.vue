@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from "vue";
 import axios from 'axios';
 import VChart from 'vue-echarts';
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue';
-import bannerImg from '@/assets/header.jpg';
+import bannerImg from '@/assets/Ice.jpg';
 import ImmersivePicture from "../user/ImmersivePicture.vue";
 
 const selectedSIE = ref(true);
@@ -49,7 +49,7 @@ const movBoxStyle = computed(() => ({
   height: "2px",
   width: "125px",
   transform: "translateX(50%)",
-  backgroundColor: "blue",
+  backgroundColor: "rgb(143,178,201)",
   transition: "left 0.3s ease"
 }));
 
@@ -58,6 +58,7 @@ function selectChart(index) {
   selectedSIE.value = index === 0;
   selectedSIC.value = index === 1;
   if (selectedSIE.value) {
+    selectedTime.value = new Date('2023-01');
     updateSIEChart();
   } else {
     updateSICChart();
@@ -236,6 +237,7 @@ const loadImg = (imgList) => {
 onMounted(() => {
   initSIEAvailableList();
   initSICAvailableList();
+
 });
 </script>
 
@@ -314,12 +316,13 @@ onMounted(() => {
   /* 字符间距 */
   z-index: 1;
   /* 确保图片在文字下方 */
-  color: #ffffff;
+  //color:#ffffff;
+  color: rgb(19, 24, 36);
 }
 
 .banner {
   position: relative;
-  height: 500px;
+  height: 420px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -338,7 +341,8 @@ onMounted(() => {
 
 .menu-container {
   display: flex;
-  height: 105px;
+  //height: 105px;
+  height: 85px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -356,6 +360,25 @@ ul.menu {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  /* 新增: 确保伪元素不会超出 ul.menu 边界 */
+}
+
+/* 新增: 添加一个伪元素用于整个选项卡区域的上半部分透明或阴影效果 */
+ul.menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  /* 仅覆盖上半部分 */
+  background-color: rgba(240, 240, 240, 0.8);
+  /* 上半部分透明效果，或更改为 box-shadow 实现阴影效果 */
+  z-index: 0;
+  /* 确保伪元素在 li 元素下方 */
+  pointer-events: none;
+  /* 确保透明层不影响鼠标事件 */
 }
 
 ul.menu li {
@@ -383,27 +406,28 @@ ul.menu li:not(:last-child)::after {
   transform: translateY(-50%);
 }
 
-ul.menu li:hover::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(240, 240, 240, 0.8);
-  /* 浅灰色 */
-  border-radius: 10px;
-  /* 确保形状与选项卡一致 */
-  pointer-events: none;
-  /* 确保伪元素不影响鼠标事件 */
-  z-index: 1;
-  /* 确保覆盖层在文字和内容下方 */
-}
+// ul.menu li:hover::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   //background-color: rgba(240, 240, 240, 0.8); /* 浅灰色 */
+//   border-radius: 10px; /* 确保形状与选项卡一致 */
+//   pointer-events: none; /* 确保伪元素不影响鼠标事件 */
+//   z-index: 1; /* 确保覆盖层在文字和内容下方 */
+// }
 
 ul.menu li:hover p {
-  color: rgb(255, 89, 0);
+  color: rgb(71, 72, 76);
   z-index: 2;
   /* 确保文字在覆盖层之上 */
+}
+
+/* 已经被选中的选项卡在鼠标悬停时字体颜色不变 */
+ul.menu li.chart-name-selected:hover p {
+  color: inherit; //保持原有颜色
 }
 
 .mov-box {
@@ -412,11 +436,20 @@ ul.menu li:hover p {
   /* 确保滑动条在覆盖层之上 */
 }
 
+.chart-selector {
+  position: relative;
+  //修改为块级
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 15%;
+}
 
 .chart-name-selected {
-  color: blue;
-  //color: rgba(0, 55, 255, 0.957);
+  color: rgb(30, 158, 179)
 }
+
 
 .datePickerContainer {
   /* 其他样式 */
@@ -424,7 +457,7 @@ ul.menu li:hover p {
   justify-content: flex-end;
   position: relative;
   padding: 50px 0 30px;
-  margin-right: 5%; //new
+  //margin-right: 5%; //new
 }
 
 .SIEChartContainer {
@@ -473,6 +506,7 @@ ul.menu li:hover p {
   /* 保持图片比例 */
   display: inline-block;
   /* 使图片可以与 text-align 一起使用 */
+  transform: scale(1.1);
 }
 
 //下面这个样式不用加，因为全局样式里面有对应的了

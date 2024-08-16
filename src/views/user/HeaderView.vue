@@ -14,7 +14,7 @@
             @mouseleave="handleMouseLeaveNavItem" class="nav-item" :class="{ active: isActive(menu.name) }">
             <DropdownMenu :title="menu.title" :subMenus="menu.subMenus" :isVisible="nav_item_selected === menu.name"
               :style="{ left: menu.offsetLeft + 'px', zIndex: -10 }" />
-            <span class="nav-link">{{ menu.title }}</span>
+            <span class="menu-title">{{ menu.title }}</span>
           </div>
         </div>
       </div>
@@ -144,6 +144,17 @@ const isActive = (menuName: string) => {
   /* hover 时显示黑色 */
 }
 
+.menu-title {
+  text-decoration: none;
+  color: #e1e1e1;
+  font-weight: bold;
+  padding: 15px 0;
+}
+
+.header-container:hover .menu-title {
+  color: black;
+  /* hover 时显示黑色 */
+}
 
 .header-content {
   width: 100%;
@@ -210,11 +221,6 @@ z-index: 10;
   background-color: #2D8DD2;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: black;
-  padding: 15px 0;
-}
 
 .dropdown-enter-active,
 .dropdown-leave-active {
